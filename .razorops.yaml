@@ -1,0 +1,35 @@
+version: v2
+global:
+  runner: razorci/openjdk:11
+
+tasks:
+  build-jar:
+    steps:
+    - checkout
+    - cache/pull: leins-{{ checksum "project.clj" }}
+    - run: lein deps
+    - cache/push:
+        key: leins-{{ checksum "project.clj" }}
+        paths:
+        - ~/.m2
+        - ~/.lein
+    - run: lein uberjar
+    - artifacts/push:
+        name: guestbook
+        paths: [target/uberjar/clojure-guestbook-demo.jar]
+
+  unit-test:
+    steps:
+    - checkout
+    - cache/pull: leins-{{ checksum "project.clj" }}
+    - run: lein deps
+    - cache/push:
+        key: leins-{{ checksum "project.clj" }}
+        paths:
+        - ~/.m2
+        - ~/.lein
+    - commands:
+      - lein test
+      - lein uberjar
+    variables:
+    - DATABASE_URL=jdbc:h2:./guestbook_test.db
