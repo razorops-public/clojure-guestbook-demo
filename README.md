@@ -5,6 +5,8 @@ If you have forked this repo, then connect with Razorops to create your demo pip
 
 [![Connect](https://github.com/razorops-public/images/blob/main/connect_with_github.svg)](https://dashboard.razorops.com/get-github-installation-link-for-org)
 
+[![Build Status](https://api.razorops.com/apps/fragrant-sun-3323/badge.svg?branch=master)](https://api.razorops.com/apps/fragrant-sun-3323/workflows)
+
 This is an example code to demonstrate how to create [Clojure](https://docs.docker.com/compose/) based pipeline on [Razorops](https://docs.razorops.com/) CI/CD platform.
 
 It's a guestbook app generated using [Luminus](https://luminusweb.com/) (version "3.93") web framework in Clojure. It allows users to leave a message and to view a list of messages left by others.
